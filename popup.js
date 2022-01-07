@@ -99,6 +99,22 @@ $(function () {
   });
 });
 
-$(function  () {
-  $("#myUL").sortable();
+$(function () {
+  $("#myUL").sortable({
+    update: function (event, ui) {
+      var updatedList = [];
+      $("li").each(function () {
+        var todo = $(this).text().split("\u00D7")[0];
+        var isChecked = false;
+        if ($(this).hasClass("checked")) {
+          isChecked = true;
+        }
+        updatedList.push({
+          todo: todo,
+          isChecked: isChecked,
+        });
+      });
+      chrome.storage.sync.set({ todolist: updatedList });
+    },
+  });
 });
