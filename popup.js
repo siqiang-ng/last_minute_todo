@@ -1,12 +1,24 @@
 $(function () {
-  // Adding the close button to each listed item
-  $("li").each(function () {
-    $(this).append(`<span class='close'>\u00D7</span>`);
-  });
+  chrome.storage.sync.get({ todolist: [] }, function (result) {
+    var todolist = [];
+    if (!jQuery.isEmptyObject(result.todolist)) {
+      todolist = result.todolist;
+    }
 
-  // Give the close features
-  $(".close").click(function () {
-    $(this).parent().css("display", "none");
+    jQuery.each(todolist, (index, element) => {
+      var input = element.todo;
+      var isChecked = element.isChecked;
+      var listTag = isChecked ? "<li class='checked'>" : "<li>";
+
+      $("#myUL").append(
+        `${listTag}${input}<span class='close'>\u00D7</span></li>`
+      );
+
+      // Give the close features
+      $(".close").click(function () {
+        $(this).parent().css("display", "none");
+      });
+    });
   });
 
   // Add a "checked" symbol when clicking on a list item
@@ -28,6 +40,16 @@ $(function () {
       if (input === "") {
         alert("You must write something!");
       } else {
+        chrome.storage.sync.get({ todolist: [] }, function (result) {
+          var newItem = {
+            todo: input,
+            isChecked: false,
+          };
+          var newList = [...result.todolist, newItem];
+
+          chrome.storage.sync.set({ todolist: newList });
+        });
+
         $("#myUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
       }
 
