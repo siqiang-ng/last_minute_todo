@@ -29,6 +29,10 @@ $(function () {
         alert("You must write something!");
       } else {
         $("#myUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
+        var value = $("#myUL").val();
+        chrome.storage.sync.set({list: value}, function() {
+          console.log('Value is set to ' + list);
+        });
       }
 
       // Give the close features
@@ -41,3 +45,4 @@ $(function () {
     }
   });
 });
+
