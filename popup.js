@@ -16,7 +16,14 @@ $(function () {
 
       // Give the close features
       $(".close").click(function () {
-        $(this).parent().css("display", "none");
+        chrome.storage.sync.get({ todolist: [] }, function (result) {
+          var todolist = result.todolist;
+          var input = $(this).parent().text().split("\u00D7")[0];
+          var updatedInd = todolist.findIndex((obj) => obj.todo == input);
+          todolist.splice(updatedInd, 1);
+          chrome.storage.sync.set({ todolist: todolist });
+        });
+        $(this).parent().remove();
       });
     });
   });
@@ -66,15 +73,18 @@ $(function () {
         });
 
         $("#myUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
-        var value = $("#myUL").val();
-        chrome.storage.sync.set({list: value}, function() {
-          console.log('Value is set to ' + list);
-        });
       }
 
       // Give the close features
       $(".close").click(function () {
-        $(this).parent().css("display", "none");
+        chrome.storage.sync.get({ todolist: [] }, function (result) {
+          var todolist = result.todolist;
+          var input = $(this).parent().text().split("\u00D7")[0];
+          var updatedInd = todolist.findIndex((obj) => obj.todo == input);
+          todolist.splice(updatedInd, 1);
+          chrome.storage.sync.set({ todolist: todolist });
+        });
+        $(this).parent().remove();
       });
 
       // Empty the input
@@ -82,4 +92,3 @@ $(function () {
     }
   });
 });
-
