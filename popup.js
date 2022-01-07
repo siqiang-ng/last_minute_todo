@@ -39,7 +39,11 @@ document.querySelector('#myInput').addEventListener('keydown', function (e) {
         alert("You must write something!");
     } else {
         document.getElementById("myUL").appendChild(li);
+        chrome.storage.sync.set({"myLine": inputValue}, function() {
+          alert("Success!");
+        });
     }
+
     document.getElementById("myInput").value = "";
 
     var span = document.createElement("SPAN");

@@ -8,5 +8,5 @@
         "default_popup": "popup.html",
         "default_icon": "images/icon_16.png"
     },
-    "permissions": ["activeTab"]
+    "permissions": ["storage"]
 }
