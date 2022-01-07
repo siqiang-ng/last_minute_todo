@@ -4,8 +4,8 @@
 }
 
 html, body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-family: 'Single Day', sans-serif;
+  font-size: 18px;
   margin: 0;
   min-height: 180px;
   padding: 0;
@@ -22,12 +22,11 @@ ul {
 ul li {
   cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
-  background: #eee;
-  font-size: 18px;
+  padding: 12px 40px 12px 41px;
   transition: 0.2s;
+  word-wrap: break-word;
 
-  /* make the list items unselectable */
+  /* Make the list items unselectable */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -46,7 +45,7 @@ ul li:hover {
 
 /* When clicked on, add a background color and strike out text */
 ul li.checked {
-  background: #888;
+  background: #84B686;
   color: #fff;
   text-decoration: line-through;
 }
@@ -59,7 +58,7 @@ ul li.checked::before {
   border-style: solid;
   border-width: 0 2px 2px 0;
   top: 10px;
-  left: 16px;
+  left: 18px;
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
@@ -74,20 +73,19 @@ ul li.checked::before {
 }
 
 .close:hover {
-  background-color: #c8e4cc;
+  background-color: #346636;
   color: white;
 }
 
 /* Style the header */
-.header {
+.addTask {
   background-color: #c8e4cc;
-  padding: 30px 40px;
-  color: white;
+  padding: 10px 30px 5px 30px;
   text-align: center;
 }
 
 /* Clear floats after the header */
-.header:after {
+.addTask:after {
   content: "";
   display: table;
   clear: both;
@@ -108,11 +106,37 @@ input {
   width: 85%;
   padding: 10px;
   float: left;
-  font-size: 15px;
+  font-size: 18px;
+  color: #FFFFFF;
   background-color: #84B686;
+  font-family: 'Single Day', sans-serif;
 }
 
 /* Style the input placeholder */
 ::placeholder {
-  opacity: 40%;
+  color: #FFFFFF;
+}
+
+/* Style the input border when focused */
+input:focus {
+  outline: none !important;
+  border: 2px solid #FFFFFF;
+}
+
+/* "To Do List" text at the top */
+header {
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #346636;
+  font-size: 30px;
+}
+
+/* Style the footer */
+footer {
+  font-family: "Arial";
+  text-align: right;
+  font-size: 11px;
+  padding: 3px;
+  background-color: #346636;
+  color: #FFFFFF;
 }

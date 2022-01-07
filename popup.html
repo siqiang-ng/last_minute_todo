@@ -5,26 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Last Minute To Do</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" type="text/css">
-    <link
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Single%20Day" type="text/css">
     <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
-    <div id="myDIV" class="header">
+    <header>To Do List</header>
+    <ul id="myUL">
+        <li>CS1010 Lab 1 Assignment</li>
+        <li>EE2026 report 1</li>
+        <li>Module Feedback survey</li>
+        <li class="checked">Flower the plants</li>
+        <li class="checked">Buy bubble tea</li>
+    </ul>
+    <div id="myDIV" class="addTask">
         <img class="addIcon" src="images/icon_128.png" alt="Logo">
         <input class="addInput" type="text" id="myInput" placeholder="Add task here...">
     </div>
-
-    <ul id="myUL">
-        <li>CS1010 Lab 1 Assignment</li>
-        <li class="checked">EE2026 report 1</li>
-    </ul>
+    <footer>Last Minute To Do 1.0.0</footer>
     <script src="popup.js"></script>
 </body>
 </html>
