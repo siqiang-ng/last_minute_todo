@@ -14,17 +14,19 @@ $(function () {
       $("#myUL").append(
         `${listTag}${input}<span class='close'>\u00D7</span></li>`
       );
+    });
 
-      // Give the close features
-      $(".close").click(function () {
-        chrome.storage.sync.get({ todolist: [] }, function (result) {
-          var todolist = result.todolist;
-          var input = $(this).parent().text().split("\u00D7")[0];
-          var updatedInd = todolist.findIndex((obj) => obj.todo == input);
-          todolist.splice(updatedInd, 1);
-          chrome.storage.sync.set({ todolist: todolist });
-        });
-        $(this).parent().remove();
+    // Give the close features
+    $(".close").click(function () {
+      var input = $(this).parent().text();
+      $(this).parent().remove();
+
+      chrome.storage.sync.get({ todolist: [] }, (result) => {
+        var todolist = result.todolist;
+        input = input.split("\u00D7")[0];
+        var updatedInd = todolist.findIndex((obj) => obj.todo == input);
+        todolist.splice(updatedInd, 1);
+        chrome.storage.sync.set({ todolist: todolist });
       });
     });
   });
@@ -79,14 +81,16 @@ $(function () {
 
       // Give the close features
       $(".close").click(function () {
+        var input = $(this).parent().text();
+        $(this).parent().remove();
+
         chrome.storage.sync.get({ todolist: [] }, function (result) {
           var todolist = result.todolist;
-          var input = $(this).parent().text().split("\u00D7")[0];
+          input = input.split("\u00D7")[0];
           var updatedInd = todolist.findIndex((obj) => obj.todo == input);
           todolist.splice(updatedInd, 1);
           chrome.storage.sync.set({ todolist: todolist });
         });
-        $(this).parent().remove();
       });
 
       // Empty the input
