@@ -21,32 +21,23 @@ $(function () {
     }
   });
 
-// // When user enters, new list item is created
-// document.querySelector('#myInput').addEventListener('keydown', function (e) {
-//   if (e.keyCode === 13) {
-//     console.log('enter');
-//     var li = document.createElement("li");
-//     var inputValue = document.getElementById("myInput").value;
-//     var t = document.createTextNode(inputValue);
-//     li.appendChild(t);
-//     if (inputValue === '') {
-//         alert("You must write something!");
-//     } else {
-//         document.getElementById("myUL").appendChild(li);
-//     }
-//     document.getElementById("myInput").value = "";
+  $("#myInput").keypress(function (ev) {
+    var keycode = ev.keyCode ? ev.keyCode : ev.which;
+    if (keycode == "13") {
+      var input = $("#myInput").val();
+      if (input === "") {
+        alert("You must write something!");
+      } else {
+        $("#myUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
+      }
 
-//     var span = document.createElement("SPAN");
-//     var txt = document.createTextNode("\u00D7");
-//     span.className = "close";
-//     span.appendChild(txt);
-//     li.appendChild(span);
+      // Give the close features
+      $(".close").click(function () {
+        $(this).parent().css("display", "none");
+      });
 
-//     for (i = 0; i < close.length; i++) {
-//         close[i].onclick = function() {
-//             var div = this.parentElement;
-//             div.style.display = "none";
-//         }
-//     }
-//   }
-// });
+      // Empty the input
+      $("#myInput").val("");
+    }
+  });
+});
