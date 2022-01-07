@@ -1,62 +1,43 @@
-// Create a "close" button and append it to each list item
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
+$(function () {
+  // Adding the close button to each listed item
+  $("li").each(function () {
+    $(this).append(`<span class='close'>\u00D7</span>`);
+  });
 
-// Click on a close button to hide the current list item
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
+  // Give the close features
+  $(".close").click(function () {
+    $(this).parent().css("display", "none");
+  });
 
-// Add a "checked" symbol when clicking on a list item
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
+  // Add a "checked" symbol when clicking on a list item
+  $("ul").click(function (ev) {
+    var target = $(ev.target);
+    if (target.is("li")) {
+      if (target.hasClass("checked")) {
+        target.removeClass("checked");
+      } else {
+        target.addClass("checked");
+      }
+    }
+  });
 
-// When user enters, new list item is created
-document.querySelector('#myInput').addEventListener('keydown', function (e) {
-  if (e.keyCode === 13) {
-    console.log('enter');
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
+  $("#myInput").keypress(function (ev) {
+    var keycode = ev.keyCode ? ev.keyCode : ev.which;
+    if (keycode == "13") {
+      var input = $("#myInput").val();
+      if (input === "") {
         alert("You must write something!");
-    } else {
-        document.getElementById("myUL").appendChild(li);
-        chrome.storage.sync.set({"myLine": inputValue}, function() {
-          alert("Success!");
-        });
+      } else {
+        $("#myUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
+      }
+
+      // Give the close features
+      $(".close").click(function () {
+        $(this).parent().css("display", "none");
+      });
+
+      // Empty the input
+      $("#myInput").val("");
     }
-
-    document.getElementById("myInput").value = "";
-
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-
-    for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-            var div = this.parentElement;
-            div.style.display = "none";
-        }
-    }
-  }
+  });
 });
