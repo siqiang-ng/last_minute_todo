@@ -11,7 +11,7 @@ $(function () {
       var isChecked = element.isChecked;
       var listTag = isChecked ? "<li class='checked'>" : "<li>";
 
-      $("#myUL").append(
+      $("#taskUL").append(
         `${listTag}${input}<span class='close'>\u00D7</span></li>`
       );
     });
@@ -59,10 +59,10 @@ $(function () {
   });
 
   // Add new item when an input is there and click enter
-  $("#myInput").keypress(function (ev) {
+  $("#taskInput").keypress(function (ev) {
     var keycode = ev.keyCode ? ev.keyCode : ev.which;
     if (keycode == "13") {
-      var input = $("#myInput").val();
+      var input = $("#taskInput").val();
       if (input === "") {
         alert("You must write something!");
       } else {
@@ -76,7 +76,7 @@ $(function () {
           chrome.storage.sync.set({ todolist: newList });
         });
 
-        $("#myUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
+        $("#taskUL").append(`<li>${input}<span class='close'>\u00D7</span></li>`);
       }
 
       // Give the close features
@@ -94,13 +94,13 @@ $(function () {
       });
 
       // Empty the input
-      $("#myInput").val("");
+      $("#taskInput").val("");
     }
   });
 });
 
 $(function () {
-  $("#myUL").sortable({
+  $("#taskUL").sortable({
     update: function (event, ui) {
       var updatedList = [];
       $("li").each(function () {
