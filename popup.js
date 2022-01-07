@@ -1,4 +1,5 @@
 $(function () {
+  // Initial function to run every time popup is opened
   chrome.storage.sync.get({ todolist: [] }, function (result) {
     var todolist = [];
     if (!jQuery.isEmptyObject(result.todolist)) {
@@ -21,7 +22,7 @@ $(function () {
     });
   });
 
-  // Update isChecked when list is clicked
+  // Update isChecked in storage every time item is clicked
   $("ul").click(function (ev) {
     var target = $(ev.target);
     var isChecked;
@@ -48,6 +49,7 @@ $(function () {
     }
   });
 
+  // Add new item when an input is there and click enter
   $("#myInput").keypress(function (ev) {
     var keycode = ev.keyCode ? ev.keyCode : ev.which;
     if (keycode == "13") {
