@@ -21,15 +21,30 @@ $(function () {
     });
   });
 
-  // Add a "checked" symbol when clicking on a list item
+  // Update isChecked when list is clicked
   $("ul").click(function (ev) {
     var target = $(ev.target);
+    var isChecked;
     if (target.is("li")) {
       if (target.hasClass("checked")) {
         target.removeClass("checked");
+        isChecked = false;
       } else {
         target.addClass("checked");
+        isChecked = true;
       }
+
+      var input = target.text().split("\u00D7")[0];
+
+      chrome.storage.sync.get({ todolist: [] }, function (result) {
+        var todolist = result.todolist;
+        var updatedInd = todolist.findIndex((obj) => obj.todo == input);
+
+        console.log(updatedInd);
+
+        todolist[updatedInd].isChecked = isChecked;
+        chrome.storage.sync.set({ todolist: todolist });
+      });
     }
   });
 
