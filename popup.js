@@ -98,3 +98,7 @@ $(function () {
     }
   });
 });
+
+$(function  () {
+  $("#myUL").sortable();
+});
