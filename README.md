@@ -7,5 +7,5 @@ This is a chrome extension for last minute people (like you). :D
 ## Installation
 1. `git clone git@github.com:siqiang-ng/last_minute_todo.git`
 1. Go to chrome://extensions
-2. Click the *Load Unpacked* button, select the right folder. 
+2. Click the **Load Unpacked** button, select the right folder. 
 3. Switch on the developer mode if you will like to add more functionalities to the extension :D
