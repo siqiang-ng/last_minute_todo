@@ -8,7 +8,8 @@ This is a chrome extension for last minute people (like you). :D
 1. Sample TodoList available upon installation
 2. Add new item to the list
 3. Delete the item from the list
-4. Items remain in the list even after restarting the browser
+4. Strikethrough the item on the list 
+5. Items remain in the list even after restarting the browser
 
 ## Installation
 1. `git clone git@github.com:siqiang-ng/last_minute_todo.git`
